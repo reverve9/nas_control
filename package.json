@@ -1,0 +1,72 @@
+{
+  "name": "nas-control",
+  "version": "1.0.0",
+  "description": "NAS 파일 정리 자동화 앱",
+  "type": "module",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "concurrently \"npm run vite:dev\" \"npm run electron:dev\"",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "electron:dev": "electron .",
+    "electron:build:mac": "electron-builder --mac",
+    "electron:build:win": "electron-builder --win",
+    "build": "npm run vite:build && electron-builder --mac --win",
+    "build:mac": "npm run vite:build && electron-builder --mac",
+    "build:win": "npm run vite:build && electron-builder --win"
+  },
+  "build": {
+    "appId": "com.ninebridge.nascontrol",
+    "productName": "NAS Control",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "main.cjs",
+      "preload.cjs",
+      "claude.js",
+      "public/**/*"
+    ],
+    "mac": {
+      "icon": "public/app-icon.png",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "icon": "public/app-icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "dotenv": "^16.3.1",
+    "electron-store": "^8.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.0",
+    "electron": "^33.0.0",
+    "electron-builder": "^24.0.0",
+    "lucide-react": "^0.263.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite": "^5.0.0"
+  }
+}
