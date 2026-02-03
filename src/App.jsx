@@ -351,8 +351,8 @@ function App() {
       {/* 헤더 */}
       <div className="header">
         <h1>
-          <img src="./public/app-icon.png" alt="NC" className="header-logo" />
-          NAS Control
+          <img src="./public/app-icon.png" alt="DC" className="header-logo" />
+          DATA_control
         </h1>
         {pendingFiles.length > 0 && !showPendingView && (
           <span className="header-badge">{pendingFiles.length}개 대기</span>
